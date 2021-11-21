@@ -11,19 +11,17 @@ fn main() {
 	let args: Vec<String> = env::args().collect();
 
 	if args.len() == 1 {
-		println!("rat: need file name");
+		println!("rat: missing file name(s)");
 	} else {
 		let stdout = io::stdout();
 		let mut stdout_handle = stdout.lock();
 		let mut buf: Vec<u8> = Vec::new();
 
 		for fname in args[1..].iter() {
-			println!("rat: {}\n", fname);
-
 			match read_byte(fname) {
 				Ok(v) => {
 					for b in v {
-						buf.push(b)
+						buf.push(b);
 					}
 				}
 				Err(_) => println!("rat: failed to read file"),
